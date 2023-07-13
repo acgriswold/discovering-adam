@@ -4,8 +4,10 @@
   "version": "0.0.1",
   "license": "BSD-3-Clause",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
+    "dev": "PUBLIC_ENV=development astro dev",
+    "start": "PUBLIC_ENV=development astro dev",
+    "build:production": "PUBLIC_ENV=production astro build",
+    "build:preview": "PUBLIC_ENV=preview astro build",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
