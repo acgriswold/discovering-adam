@@ -21,7 +21,9 @@ export default defineConfig({
       teaser: 'storyblok/Teaser',
     },
   }), 
-  tailwind(), 
+  tailwind({
+    applyBaseStyles: false,
+  }), 
   react()
 ],
   vite: {
