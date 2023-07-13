@@ -87,6 +87,9 @@ web_modules/
 .next
 out
 
+# build output
+dist/
+
 # Nuxt.js build / generate output
 .nuxt
 dist
@@ -122,9 +125,21 @@ dist
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
+# Visual Studio Code
+.vscode
+
 # yarn v2
 .yarn/cache
 .yarn/unplugged
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# macOS-specific files
+.DS_Store

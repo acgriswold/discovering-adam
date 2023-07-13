@@ -1,0 +1,21 @@
+{
+  "name": "astro-ultimate-tutorial",
+  "type": "module",
+  "version": "0.0.1",
+  "license": "BSD-3-Clause",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "devDependencies": {
+    "@storyblok/astro": "^2.2.1",
+    "astro": "^2.4.2",
+    "@astrojs/tailwind": "^3.1.1",
+    "tailwindcss": "^3.3.1",
+    "vite": "^4.3.5",
+    "@vitejs/plugin-basic-ssl": "^1.0.1"
+  }
+}
