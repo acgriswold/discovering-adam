@@ -7,32 +7,34 @@ import react from "@astrojs/react"
 import vercel from "@astrojs/vercel/serverless"
 
 const env = loadEnv('', process.cwd(), 'STORYBLOK')
+const inProduction = env.PUBLIC_ENV === 'production'
 
 export default defineConfig({
   integrations: [
     storyblok({
-    accessToken: env.STORYBLOK_TOKEN,
-    apiOptions: {
-      region: 'us',
-    },
-    components: {
-      page: 'storyblok/Page',
-      feature: 'storyblok/Feature',
-      grid: 'storyblok/Grid',
-      teaser: 'storyblok/Teaser',
-    },
-  }), 
-  tailwind({
-    applyBaseStyles: false,
-  }), 
-  react()
-],
+      bridge: !inProduction,
+      accessToken: env.STORYBLOK_TOKEN,
+      apiOptions: {
+        region: 'us',
+      },
+      components: {
+        page: 'storyblok/Page',
+        feature: 'storyblok/Feature',
+        grid: 'storyblok/Grid',
+        teaser: 'storyblok/Teaser',
+      },
+    }), 
+    tailwind({
+      applyBaseStyles: false,
+    }), 
+    react()
+  ],
   vite: {
     plugins: [basicSsl()],
     server: {
       https: true
     },
   },
-  output: 'server',
-  adapter: vercel(),
+  output: !inProduction ? 'server' : 'static',
+  adapter: !inProduction ? vercel() : undefined,
 })
