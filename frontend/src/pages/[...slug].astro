@@ -1,22 +1,19 @@
 ---
 import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
-import { useStoryblokApi } from '@storyblok/astro'
+import { useStoryblokWrapper }  from '../lib/storyblok/wrapper'
 
 import '../styles/global.css'
 
+let storyblokApi = useStoryblokWrapper()
+
 const { slug } = Astro.params
-let storyblokSlug = slug ?? 'home'
 
-const version = 'draft' 
-let storyblokApi = useStoryblokApi()
-
-let { data } = 
-    await storyblokApi.get(`cdn/stories/${storyblokSlug}`, { version })
+let { data } = await storyblokApi.getStory(slug)
         .then(response => response)
         .catch(error => error.status == 404 
-            ? storyblokApi.get(`cdn/stories/errors/404`, { version })
-            : storyblokApi.get(`cdn/stories/errors/unhandled`, { version }))
+            ? storyblokApi.getStory('errors/404')
+            : storyblokApi.getStory('errors/unhandled'))
 
 const story = data.story
 ---
