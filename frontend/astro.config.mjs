@@ -22,6 +22,7 @@ export default defineConfig({
       page: 'storyblok/Page',
       grid: 'storyblok/Grid',
       teaser: 'storyblok/Teaser',
+      'navigation-menu': 'storyblok/Navigation Menu',
     },
   }), 
   tailwind({

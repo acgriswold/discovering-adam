@@ -1,0 +1,12 @@
+---
+import { storyblokEditable } from "@storyblok/astro";
+import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
+
+import { Navigation } from '@/components/global/navigation'
+
+const { blok } = Astro.props;
+---
+
+<Navigation {...storyblokEditable(blok)} client:load>
+    
+</Navigation>
