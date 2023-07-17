@@ -20,9 +20,9 @@ export default defineConfig({
     },
     components: {
       page: 'storyblok/Page',
-      feature: 'storyblok/Feature',
       grid: 'storyblok/Grid',
       teaser: 'storyblok/Teaser',
+      'navigation-menu': 'storyblok/Navigation Menu',
     },
   }), 
   tailwind({
