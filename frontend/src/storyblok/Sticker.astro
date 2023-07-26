@@ -1,0 +1,24 @@
+---
+import { storyblokEditable } from '@storyblok/astro'
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
+
+import { Sticker as ReactSticker } from '@/components/global/sticker'
+
+const { blok } = Astro.props
+---
+
+<ReactSticker
+  client:load
+  {...storyblokEditable(blok)} 
+  sticker={blok.Sticker}
+  offsetDx={blok.OffsetDx}
+  offsetDy={blok.OffsetDy}>
+
+  <div class="flex justify-between space-x-4">
+    {
+      blok.Card?.map((blok) => {
+        return <StoryblokComponent blok={blok} />
+      })
+    }
+  </div>  
+</ReactSticker>
