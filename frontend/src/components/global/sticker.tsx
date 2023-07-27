@@ -24,7 +24,7 @@ export function Sticker({ sticker, children, offsetDx, offsetDy }: IStickerProps
             initial={{ translate: `${offsetDx}px ${offsetDy}px`, scale: 1 }}
             drag
             whileDrag={{ scale: 0.90 }}
-            dragConstraints={{ left: -50, right: 50, top: -50, bottom: 50 }}
+            dragConstraints={{ left: -20, right: 20, top: -20, bottom: 20 }}
             whileTap={{ scale: 0.95, cursor: "grabbing" }}
             dragElastic={0.3}
             dragTransition={{ bounceStiffness: 33, bounceDamping: 10 }}
