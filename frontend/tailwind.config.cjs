@@ -91,6 +91,7 @@ module.exports = {
         '5xl': [6, 1.1],
         '6xl': [7, 1.1],
         '7xl': [8, 1],
+        'outward-5xl': [8, 1],
         'outward-8xl': [21.5, 1],
         'outward-9xl': [25, 1],
     },

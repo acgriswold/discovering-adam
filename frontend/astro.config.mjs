@@ -27,6 +27,7 @@ export default defineConfig({
       'sticker': 'storyblok/Sticker',
       'sticker-card-content': 'storyblok/StickerCardContent',
       'hero': 'storyblok/Hero',
+      'introduction': 'storyblok/Introduction',
     },
   }), 
   tailwind({

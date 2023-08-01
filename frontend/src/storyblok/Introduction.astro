@@ -1,0 +1,23 @@
+---
+import { storyblokEditable } from "@storyblok/astro";
+
+import RichTextRenderer from "@storyblok/astro/RichTextRenderer.astro";
+
+const { blok } = Astro.props;
+---
+
+<div
+  {...storyblokEditable(blok)}
+  class="flex flex-col gap-4 justify-center w-11/12 lg:w-1/2"
+>
+  <h2 class="outward text-outward-5xl">{blok.Greeting}</h2>
+  <p class="text-sm">
+    <RichTextRenderer richTextData={blok.Details} />
+  </p>
+</div>
+
+<style>
+  .outward {
+    font-family: "outward-block";
+  }
+</style>
