@@ -1,6 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'outward-block';
+  src: url('/fonts/outward-block.ttf') format('truetype');
+  font-weight: normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'outward-borders';
+  src: url('/fonts/outward-borders.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
  
 @layer base {
   :root {
