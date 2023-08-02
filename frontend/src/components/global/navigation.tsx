@@ -4,7 +4,7 @@ import * as React from "react"
 // import Link from "next/link"
 
 import { cn } from "@/lib/utils"
-import { CrumpledPaperIcon,  } from "@radix-ui/react-icons"
+import { CrumpledPaperIcon } from "@radix-ui/react-icons"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -12,38 +12,36 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 
-const primaryLinks: { title: string, href: string, description: string }[] = [
-  {
-    title: "Item 1",
-    href: "/",
-    description: "some description"
-  }
-];
 
-const secondaryLinks: { title: string; href: string; description: string }[] = [
-  {
-    title: "404",
-    href: "/errors/404",
-    description:
-      "Error page example for 404 response codes.",
-  },
-  {
-    title: "unhandled",
-    href: "/errors/unhandled",
-    description:
-      "All other unhandled reponses will redirect here.",
-  },
-]
+export type NavigationMenuProperties = {
+  trigger: string,
+  title: string,
+  description: string,
+  href: Href,
+  primaryLinks: NavigationLink[],
+  secondaryItems: NavigationItem[],
+}
 
-export function Navigation() {
+export type NavigationItem = {
+  Trigger: string,
+  Content: NavigationLink[],
+}
+
+export type NavigationLink = {
+  Title: string,
+  Description: string,
+  href: Href,
+}
+
+
+export function CustomNavigationMenu(props: NavigationMenuProperties) {
   return (
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Introduction</NavigationMenuTrigger>
+          <NavigationMenuTrigger>{props.trigger}</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3">
@@ -54,45 +52,48 @@ export function Navigation() {
                   >
                     <CrumpledPaperIcon className="h-6 w-6" />
                     <div className="mb-2 mt-4 text-lg font-medium">
-                      Adam Griswold
+                      {props.title}
                     </div>
                     <p className="text-sm leading-tight text-muted-foreground">
-                      Full stack web developer with years of
-                      experience.
+                      {props.description}
                     </p>
                   </a>
                 </NavigationMenuLink>
               </li>
-              
-              {primaryLinks.map((link) => (
+
+
+              {props.primaryLinks.map((link) => (
                 <ListItem
-                  key={link.title}
-                  title={link.title}
-                  href={link.href}
+                  key={link.Title}
+                  title={link.Title}
+                  href={link.href.cached_url}
                 >
-                  {link.description}
+                  {link.Description}
                 </ListItem>
               ))}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
 
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Errors</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {secondaryLinks.map((link) => (
-                <ListItem
-                  key={link.title}
-                  title={link.title}
-                  href={link.href}
-                >
-                  {link.description}
-                </ListItem>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
+        
+        {props.secondaryItems.map((item) => (
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>{item.Trigger}</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                {item.Content.map((link) => (
+                  <ListItem
+                    key={link.Title}
+                    title={link.Title}
+                    href={link.href.cached_url}
+                  >
+                    {link.Description}
+                  </ListItem>
+                ))}
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+        ))}
       </NavigationMenuList>
     </NavigationMenu>
   )

@@ -1,0 +1,18 @@
+---
+import { storyblokEditable } from '@storyblok/astro'
+
+const { blok } = Astro.props
+---
+
+<div {...storyblokEditable(blok)} class="flex flex-wrap gap-0 justify-center mt-16 md:mt-32">
+    <h2 class='fluid-header text-center md:text-right'>{blok.Header}</h2>
+    <h2 class='fluid-header text-center md:text-left trailing-0 -mt-32 md:mt-0'>{blok.HeaderSecondLine}</h2>
+</div>
+
+<style>
+    .fluid-header {
+        font-family: 'outward-block';
+
+        @apply leading-tight tracking-normal text-outward-9xl md:text-outward-8xl;
+    }
+</style>

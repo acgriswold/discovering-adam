@@ -23,6 +23,11 @@ export default defineConfig({
       grid: 'storyblok/Grid',
       teaser: 'storyblok/Teaser',
       'navigation-menu': 'storyblok/Navigation Menu',
+      'sticker-set': 'storyblok/StickerSet',
+      'sticker': 'storyblok/Sticker',
+      'sticker-card-content': 'storyblok/StickerCardContent',
+      'hero': 'storyblok/Hero',
+      'introduction': 'storyblok/Introduction',
     },
   }), 
   tailwind({

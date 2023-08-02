@@ -8,3 +8,8 @@ interface ImportMetaEnv {
 interface ImportMeta {
     readonly env: ImportMetaEnv;
 }
+
+interface Href {
+    readonly url: string,
+    readonly cached_url: string
+}

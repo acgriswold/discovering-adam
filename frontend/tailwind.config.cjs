@@ -73,5 +73,32 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  corePlugins: {
+    fontSize: false,
+  },
+  plugins: [
+    require("tailwindcss-animate"), 
+    require("tailwindcss-fluid-type")({
+      values: {
+        'xs': [-2, 1.6],
+        'sm': [-1, 1.6],
+        'base': [0, 1.6],
+        'lg': [1, 1.6],
+        'xl': [2, 1.2],
+        '2xl': [3, 1.2],
+        '3xl': [4, 1.2],
+        '4xl': [5, 1.1],
+        '5xl': [6, 1.1],
+        '6xl': [7, 1.1],
+        '7xl': [8, 1],
+        'outward-5xl': [8, 1],
+        'outward-8xl': [21.5, 1],
+        'outward-9xl': [25, 1],
+    },
+    })
+  ],
+  variants: {
+    fluidType: ['responsive']
+  }
+
 }
