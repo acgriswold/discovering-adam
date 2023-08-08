@@ -1,0 +1,8 @@
+---
+import { storyblokEditable } from '@storyblok/astro'
+import { Separator as ShadcnSeparator } from '@/components/ui/separator'
+
+const { blok } = Astro.props
+---
+
+<ShadcnSeparator orientation={blok.orientation} {...storyblokEditable(blok)} />
