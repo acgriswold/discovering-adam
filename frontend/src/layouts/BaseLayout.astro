@@ -3,10 +3,12 @@ import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
 import { useStoryblokWrapper }  from '../lib/storyblok/wrapper'
 
 const storyblokApi = useStoryblokWrapper();
-let { data } = await storyblokApi.getStory('global/header')
-        .then(response => response)
+let headerPromise = storyblokApi.getStory('global/header')
+let footerPromise = storyblokApi.getStory('global/footer')
 
-const header = data?.story;
+let [{data: header}, {data: footer}] = await Promise.all([headerPromise, footerPromise])
+
+
 ---
 
 <html lang='en'>
@@ -19,11 +21,17 @@ const header = data?.story;
 
   <nav>
     {
-      header && <StoryblokComponent blok={header.content} />
+      header && <StoryblokComponent blok={header.story.content} />
     }
   </nav>
   
   <body class='container mx-auto'>
     <slot />
   </body>
+
+  <footer>
+    {
+      footer && <StoryblokComponent blok={footer.story.content} />
+    }
+  </footer>
 </html>
