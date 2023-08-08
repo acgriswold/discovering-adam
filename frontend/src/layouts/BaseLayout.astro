@@ -1,3 +1,14 @@
+---
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
+import { useStoryblokWrapper }  from '../lib/storyblok/wrapper'
+
+const storyblokApi = useStoryblokWrapper();
+let { data } = await storyblokApi.getStory('global/header')
+        .then(response => response)
+
+const header = data?.story;
+---
+
 <html lang='en'>
   <head>
     <meta charset='UTF-8' />
@@ -5,6 +16,13 @@
     <link rel='icon' type='image/x-icon' href='/favicon.ico' />
     <title>Adam Griswold | Fullstack Designer & Developer</title>
   </head>
+
+  <nav>
+    {
+      header && <StoryblokComponent blok={header.content} />
+    }
+  </nav>
+  
   <body class='container mx-auto'>
     <slot />
   </body>
