@@ -6,7 +6,7 @@ import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
 const { blok } = Astro.props;
 ---
 
-<div {...storyblokEditable(blok)} class="container grid grid-cols-3">
+<div {...storyblokEditable(blok)} class="container grid grid-cols-3 gap-8 prose max-w-none min-h-[240px]">
   <section class="flex flex-col">
     <RichTextRenderer richTextData={blok.left} />
   </section>
@@ -15,7 +15,7 @@ const { blok } = Astro.props;
     <RichTextRenderer richTextData={blok.center} />
   </section>
 
-  <section class="flex flex-wrap">
+  <section class="flex flex-wrap not-prose mt-8">
     {
       blok.socials?.map((blok) => {
         return <StoryblokComponent blok={blok} />;
