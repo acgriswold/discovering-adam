@@ -1,0 +1,14 @@
+---
+import { storyblokEditable } from "@storyblok/astro";
+
+import { TooltipWrapper } from "@/components/global/tooltipWrapper";
+
+const { blok } = Astro.props;
+const { asset: { alt, title, filename }} = blok;
+---
+
+<TooltipWrapper client:load {...storyblokEditable(blok)}>
+  <a slot="trigger" href={blok.href.url}><img src={filename} alt={alt} /></a>
+
+  <div>{title}</div>
+</TooltipWrapper>

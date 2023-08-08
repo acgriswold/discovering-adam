@@ -28,6 +28,8 @@ export default defineConfig({
       'sticker-card-content': 'storyblok/StickerCardContent',
       'hero': 'storyblok/Hero',
       'introduction': 'storyblok/Introduction',
+      'socials-collection': 'storyblok/SocialsCollection',
+      'socials-link': 'storyblok/SocialsLink',
     },
   }), 
   tailwind({
