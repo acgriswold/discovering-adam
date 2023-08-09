@@ -11,9 +11,10 @@ const { blok } = Astro.props;
   class="flex flex-col gap-4 justify-center w-11/12 lg:w-1/2"
 >
   <h2 class="outward text-outward-5xl">{blok.Greeting}</h2>
-  <p class="text-sm">
+
+  <div class="prose">
     <RichTextRenderer richTextData={blok.Details} />
-  </p>
+  </div>
 </div>
 
 <style>

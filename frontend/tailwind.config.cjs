@@ -77,6 +77,7 @@ module.exports = {
     fontSize: false,
   },
   plugins: [
+    require("@tailwindcss/typography"),
     require("tailwindcss-animate"), 
     require("tailwindcss-fluid-type")({
       values: {

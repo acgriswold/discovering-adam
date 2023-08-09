@@ -30,6 +30,8 @@ export default defineConfig({
       'introduction': 'storyblok/Introduction',
       'socials-collection': 'storyblok/SocialsCollection',
       'socials-link': 'storyblok/SocialsLink',
+      'separator': 'storyblok/Separator',
+      'footer-content': 'storyblok/FooterContent'
     },
   }), 
   tailwind({

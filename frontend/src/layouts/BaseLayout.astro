@@ -1,3 +1,16 @@
+---
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
+import { useStoryblokWrapper }  from '../lib/storyblok/wrapper'
+
+const storyblokApi = useStoryblokWrapper();
+let headerPromise = storyblokApi.getStory('global/header')
+let footerPromise = storyblokApi.getStory('global/footer')
+
+let [{data: header}, {data: footer}] = await Promise.all([headerPromise, footerPromise])
+
+
+---
+
 <html lang='en'>
   <head>
     <meta charset='UTF-8' />
@@ -5,7 +18,20 @@
     <link rel='icon' type='image/x-icon' href='/favicon.ico' />
     <title>Adam Griswold | Fullstack Designer & Developer</title>
   </head>
+
+  <nav>
+    {
+      header && <StoryblokComponent blok={header.story.content} />
+    }
+  </nav>
+  
   <body class='container mx-auto'>
     <slot />
   </body>
+
+  <footer>
+    {
+      footer && <StoryblokComponent blok={footer.story.content} />
+    }
+  </footer>
 </html>
