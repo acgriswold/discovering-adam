@@ -9,7 +9,7 @@ let storyblokApi = useStoryblokWrapper()
 
 const { slug } = Astro.params
 
-let { data } = await storyblokApi.getStory(slug)
+let { data } = await storyblokApi.getPage(slug)
         .then(response => response)
         .catch(error => error.status == 404 
             ? storyblokApi.getStory('errors/404')
