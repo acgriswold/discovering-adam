@@ -1,0 +1,25 @@
+---
+import CardWrapper from "@/components/global/cardWrapper";
+import { storyblokEditable } from "@storyblok/astro";
+import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
+
+const { blok } = Astro.props;
+---
+
+<CardWrapper
+  client:load
+  {...storyblokEditable(blok)}
+>
+  <slot slot="title">{blok.header}</slot>
+
+  <slot slot="description">description</slot>
+
+  {
+    blok.content?.map((blok) => {
+      console.log(blok)
+      return <StoryblokComponent key={blok._uid} blok={blok} />;
+    })
+  }
+
+  <slot slot="footer">footer</slot>
+</CardWrapper>

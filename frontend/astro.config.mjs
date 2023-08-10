@@ -31,7 +31,9 @@ export default defineConfig({
       'socials-collection': 'storyblok/SocialsCollection',
       'socials-link': 'storyblok/SocialsLink',
       'separator': 'storyblok/Separator',
-      'footer-content': 'storyblok/FooterContent'
+      'footer-content': 'storyblok/FooterContent',
+      'bento-box': 'storyblok/BentoBox',
+      'bento-box-card': 'storyblok/BentoBoxCard'
     },
   }), 
   tailwind({
