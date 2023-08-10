@@ -1,25 +1,31 @@
 ---
 import CardWrapper from "@/components/global/cardWrapper";
+import { CardContent } from "@/components/ui/card";
 import { storyblokEditable } from "@storyblok/astro";
 import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
 
 const { blok } = Astro.props;
+console.log(blok)
 ---
 
-<CardWrapper
-  client:load
-  {...storyblokEditable(blok)}
->
-  <slot slot="title">{blok.header}</slot>
+<a href={blok.href.url} class="group">
+  <CardWrapper
+    client:load
+    {...storyblokEditable(blok)}
+    className="h-full flex flex-col group-hover:drop-shadow-xl group-hover:scale-[101%]"
+  >
+    <slot slot="title">{blok.title}</slot>
 
-  <slot slot="description">description</slot>
+    <slot slot="description">{blok.description}</slot>
 
-  {
-    blok.content?.map((blok) => {
-      console.log(blok)
-      return <StoryblokComponent key={blok._uid} blok={blok} />;
-    })
-  }
+    <CardContent className="flex-grow">
+      {
+        blok.content?.map((blok) => {
+          return <StoryblokComponent key={blok._uid} blok={blok} />;
+        })
+      }
+    </CardContent>
 
-  <slot slot="footer">footer</slot>
-</CardWrapper>
+    <slot slot="footer">{blok.footer}</slot>
+  </CardWrapper>
+</a>
