@@ -1,15 +1,15 @@
 ---
 import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
-import BaseLayout from '../layouts/BaseLayout.astro'
-import { useStoryblokWrapper }  from '../lib/storyblok/wrapper'
+import ComponentPlaygroundLayout from '../../layouts/ComponentPlaygroundLayout.astro'
+import { useStoryblokWrapper }  from '../../lib/storyblok/wrapper'
 
-import '../styles/global.css'
+import '../../styles/global.css'
 
 let storyblokApi = useStoryblokWrapper()
 
 const { slug } = Astro.params
 
-let { data } = await storyblokApi.getPage(slug)
+let { data } = await storyblokApi.getStory(slug, { version: 'published' })
         .then(response => response)
         .catch(error => error.status == 404 
             ? storyblokApi.getStory('errors/404')
@@ -18,6 +18,6 @@ let { data } = await storyblokApi.getPage(slug)
 const story = data.story
 ---
 
-<BaseLayout>
+<ComponentPlaygroundLayout>
     <StoryblokComponent blok={story.content} />
-</BaseLayout>
+</ComponentPlaygroundLayout>

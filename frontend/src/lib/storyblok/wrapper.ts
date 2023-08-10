@@ -11,12 +11,17 @@ export function useStoryblokWrapper() {
     }
 
     function getStory(slug: string, params?: ISbStoryParams) {
+        return get(`cdn/stories/${slug}`, params)
+    }
+
+    function getPage(slug: string, params?: ISbStoryParams) {
         let storyblokSlug = slug ?? 'home'
-        return get(`cdn/stories/${storyblokSlug}`, params)
+        return getStory(`sitemap/${storyblokSlug}`, params)
     }
 
     return {
         get,
-        getStory
+        getStory,
+        getPage
     }
 }
