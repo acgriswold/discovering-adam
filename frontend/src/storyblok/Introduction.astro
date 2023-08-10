@@ -6,14 +6,13 @@ import RichTextRenderer from "@storyblok/astro/RichTextRenderer.astro";
 const { blok } = Astro.props;
 ---
 
-<div
-  {...storyblokEditable(blok)}
-  class="flex flex-col gap-4 justify-center w-11/12 lg:w-1/2"
->
-  <h2 class="outward text-outward-5xl">{blok.Greeting}</h2>
+<div {...storyblokEditable(blok)} class="prose max-w-none grid justify-center">
+  <div class="max-w-3xl">
+    <div class="prose-xl">
+      <RichTextRenderer richTextData={blok.Lead} />
+    </div>
 
-  <div class="prose">
-    <RichTextRenderer richTextData={blok.Details} />
+    <RichTextRenderer richTextData={blok.CallToAction} />
   </div>
 </div>
 
