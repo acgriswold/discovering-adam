@@ -19,9 +19,14 @@ export function useStoryblokWrapper() {
         return get(`cdn/stories/${storyblokSlug}`, params)
     }
 
+    function translateToRelativeSlug(slug: string) : string {
+        return slug.startsWith('/') ? slug : `/${slug}`
+    }
+
     return {
         get,
         getStories,
-        getStory
+        getStory,
+        translateToRelativeSlug
     }
 }

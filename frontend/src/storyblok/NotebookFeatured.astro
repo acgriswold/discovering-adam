@@ -10,7 +10,7 @@ const introduction = {
   content: "",
 };
 
-const { getStories } = useStoryblokWrapper();
+const { getStories, translateToRelativeSlug } = useStoryblokWrapper();
 const uuids = blok.notes.join(",");
 const {
   data: { stories },
@@ -37,7 +37,7 @@ const {
           return (
             <a
               class="grid min-w-full max-w-full"
-              href={blok.full_slug}
+              href={translateToRelativeSlug(blok.full_slug)}
             >
               <div class="p-4 border border-slate-100 rounded shadow-sm">
                 <div class="prose-lg mb-2">{blok.name}</div>

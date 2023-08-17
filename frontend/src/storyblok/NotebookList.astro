@@ -9,7 +9,7 @@ const introduction = {
   content: "",
 };
 
-const { getStories } = useStoryblokWrapper();
+const { getStories, translateToRelativeSlug } = useStoryblokWrapper();
 
 const paginationContext = {
   page: 1,
@@ -19,8 +19,8 @@ const paginationContext = {
 const {
   data: { stories },
 } = await getStories({
-  starts_with: "sitemap/notebook/",
-  excluding_slugs: "sitemap/notebook/",
+  starts_with: "notebook/",
+  excluding_slugs: "notebook/",
   ...paginationContext,
 });
 ---
@@ -42,8 +42,9 @@ const {
         </div>
       ) : (
         stories?.map((story) => {
+          console.log(story)
           return (
-            <a class="min-w-full" href={story.full_slug}>
+            <a class="min-w-full" href={translateToRelativeSlug(story.full_slug)}>
               <div class="p-4 border border-slate-100 rounded shadow-sm">
                 <div class="prose-lg">
                   {story.name}

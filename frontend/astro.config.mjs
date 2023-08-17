@@ -13,10 +13,13 @@ const inProduction = env.PUBLIC_ENV === 'production'
 export default defineConfig({
   integrations: [
     storyblok({
-      bridge: !inProduction,
+      bridge: {
+        preventClicks: !inProduction,
+        resolveLinks: "url"
+      },      
     accessToken: env.STORYBLOK_TOKEN,
     apiOptions: {
-      region: 'us',
+      region: 'us'
     },
     components: {
       page: 'storyblok/Page',

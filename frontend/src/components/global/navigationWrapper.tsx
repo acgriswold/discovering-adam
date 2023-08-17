@@ -3,6 +3,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { useStoryblokWrapper } from "@/lib/storyblok/wrapper"
 
 import { CrumpledPaperIcon } from "@radix-ui/react-icons"
 
@@ -38,6 +39,8 @@ export type NavigationLink = {
 
 
 export function NavigationWrapper(props: NavigationwrapperProperties) {
+  const { translateToRelativeSlug } = useStoryblokWrapper()
+
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -67,7 +70,7 @@ export function NavigationWrapper(props: NavigationwrapperProperties) {
                 <ListItem
                   key={link.Title}
                   title={link.Title}
-                  href={link.href.cached_url}
+                  href={translateToRelativeSlug(link.href.cached_url)}
                 >
                   {link.Description}
                 </ListItem>
@@ -86,7 +89,7 @@ export function NavigationWrapper(props: NavigationwrapperProperties) {
                   <ListItem
                     key={link.Title}
                     title={link.Title}
-                    href={link.href.cached_url}
+                    href={translateToRelativeSlug(link.href.cached_url)}
                   >
                     {link.Description}
                   </ListItem>

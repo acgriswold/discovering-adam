@@ -1,13 +1,16 @@
 ---
 import CardWrapper from "@/components/global/cardWrapper";
 import { CardContent } from "@/components/ui/card";
+import { useStoryblokWrapper } from "@/lib/storyblok/wrapper";
 import { storyblokEditable } from "@storyblok/astro";
 import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
 
 const { blok } = Astro.props;
+
+const { translateToRelativeSlug } = useStoryblokWrapper()
 ---
 
-<a href={blok.href.cached_url} class="group">
+<a href={translateToRelativeSlug(blok.href.cached_url)} class="group">
   <CardWrapper
     client:load
     {...storyblokEditable(blok)}

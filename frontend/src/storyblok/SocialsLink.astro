@@ -2,7 +2,9 @@
 import { storyblokEditable } from "@storyblok/astro";
 
 import { TooltipWrapper } from "@/components/global/tooltipWrapper";
+import { useStoryblokWrapper } from "@/lib/storyblok/wrapper";
 
+const { translateToRelativeSlug } = useStoryblokWrapper()
 const { blok } = Astro.props;
 const {
   asset: { alt, title, filename },
@@ -10,7 +12,7 @@ const {
 ---
 
 <TooltipWrapper client:load {...storyblokEditable(blok)}>
-  <a slot="trigger" href={blok.href.url}>
+  <a slot="trigger" href={translateToRelativeSlug(blok.href.url)}>
     <img src={filename} alt={alt} />
   </a>
 
