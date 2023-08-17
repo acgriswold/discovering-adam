@@ -1,6 +1,6 @@
 ---
+import { correctPageSlug, useStoryblokWrapper } from "@/lib/storyblok/wrapper";
 import { storyblokEditable } from "@storyblok/astro";
-import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
 
 const { blok } = Astro.props;
 
@@ -8,6 +8,21 @@ const introduction = {
   lead: "Notebook",
   content: "",
 };
+
+const { getStories } = useStoryblokWrapper();
+
+const paginationContext = {
+  page: 1,
+  per_page: 25,
+};
+
+const {
+  data: { stories },
+} = await getStories({
+  starts_with: "sitemap/notebook/",
+  excluding_slugs: "sitemap/notebook/",
+  ...paginationContext,
+});
 ---
 
 <div {...storyblokEditable(blok)}>
@@ -21,13 +36,25 @@ const introduction = {
     </div>
 
     {
-      blok.notes.length === 0 ? (
+      stories.length === 0 ? (
         <div>
           Sorry.. I haven't taken the pencil and paper out in a while...
         </div>
       ) : (
-        blok.notes?.map((blok) => {
-          return <StoryblokComponent blok={blok} />;
+        stories?.map((story) => {
+          return (
+            <a class="min-w-full" href={correctPageSlug(story.full_slug)}>
+              <div class="p-4 border border-slate-100 rounded shadow-sm">
+                <div class="prose-lg">
+                  {story.name}
+                </div>
+                <div class="prose-sm">
+                  <div>{story.published_at}</div>
+                  <i>(Under construction)</i>
+                </div>
+              </div>
+            </a>
+          );
         })
       )
     }
