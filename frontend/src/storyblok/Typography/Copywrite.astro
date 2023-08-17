@@ -1,0 +1,21 @@
+---
+import { storyblokEditable } from "@storyblok/astro";
+
+import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
+
+const { blok } = Astro.props;
+---
+
+<div {...storyblokEditable(blok)} class="prose max-w-none grid justify-center">
+  <div style={{maxWidth: blok.Width}}>
+    {blok?.content.map((blok) => {
+        return <StoryblokComponent blok={blok} />
+    })}
+  </div>
+</div>
+
+<style>
+  .outward {
+    font-family: "outward-block";
+  }
+</style>
