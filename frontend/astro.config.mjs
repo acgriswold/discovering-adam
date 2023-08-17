@@ -13,7 +13,7 @@ const inProduction = env.PUBLIC_ENV === 'production'
 export default defineConfig({
   integrations: [
     storyblok({
-    bridge: !inProduction,
+      bridge: !inProduction,
     accessToken: env.STORYBLOK_TOKEN,
     apiOptions: {
       region: 'us',
@@ -34,7 +34,7 @@ export default defineConfig({
       'bento-box': 'storyblok/BentoBox',
       'bento-box-card': 'storyblok/BentoBoxCard',
       'notebook-list': 'storyblok/NotebookList',
-      'notebook-preview': 'storyblok/NotebookPreview',
+      'notebook-featured': 'storyblok/NotebookFeatured',
       'paragraph': 'storyblok/Typography/Paragraph',
       'copywrite': 'storyblok/Typography/Copywrite',
     },

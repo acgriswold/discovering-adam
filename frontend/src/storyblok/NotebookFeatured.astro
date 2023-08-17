@@ -1,28 +1,20 @@
 ---
 import { correctPageSlug, useStoryblokWrapper } from "@/lib/storyblok/wrapper";
 import { storyblokEditable } from "@storyblok/astro";
+import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
 
 const { blok } = Astro.props;
 
 const introduction = {
-  lead: "Notebook",
+  lead: "Featured",
   content: "",
 };
 
 const { getStories } = useStoryblokWrapper();
-
-const paginationContext = {
-  page: 1,
-  per_page: 25,
-};
-
+const uuids = blok.notes.join(",");
 const {
   data: { stories },
-} = await getStories({
-  starts_with: "sitemap/notebook/",
-  excluding_slugs: "sitemap/notebook/",
-  ...paginationContext,
-});
+} = await getStories({ by_uuids_ordered: uuids });
 ---
 
 <div {...storyblokEditable(blok)}>
@@ -36,21 +28,26 @@ const {
     </div>
 
     {
-      stories.length === 0 ? (
+      blok.notes.length === 0 ? (
         <div>
           Sorry.. I haven't taken the pencil and paper out in a while...
         </div>
       ) : (
-        stories?.map((story) => {
+        stories?.map((blok) => {
           return (
-            <a class="min-w-full" href={correctPageSlug(story.full_slug)}>
+            <a
+              class="grid min-w-full max-w-full"
+              href={correctPageSlug(blok.full_slug)}
+            >
               <div class="p-4 border border-slate-100 rounded shadow-sm">
-                <div class="prose-lg">
-                  {story.name}
-                </div>
-                <div class="prose-sm">
-                  <div>{story.published_at}</div>
-                  <i>(Under construction)</i>
+                <div class="prose-lg mb-2">{blok.name}</div>
+
+                <div class="prose-sm border p-4 border-slate-100 rounded">
+                  <div class="max-h-80 overflow-hidden">
+                    <StoryblokComponent blok={blok.content} />
+                  </div>
+
+                  <div>...</div>
                 </div>
               </div>
             </a>
