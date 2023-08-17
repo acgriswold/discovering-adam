@@ -15,22 +15,18 @@ export function useStoryblokWrapper() {
     }
 
     function getStory(slug: string, params?: ISbStoryParams) {
-        return get(`cdn/stories/${slug}`, params)
+        let storyblokSlug = slug ?? 'home'
+        return get(`cdn/stories/${storyblokSlug}`, params)
     }
 
-    function getPage(slug: string, params?: ISbStoryParams) {
-        let storyblokSlug = slug ?? 'home'
-        return getStory(`sitemap/${storyblokSlug}`, params)
+    function translateToRelativeSlug(slug: string) : string {
+        return slug.startsWith('/') ? slug : `/${slug}`
     }
 
     return {
         get,
         getStories,
         getStory,
-        getPage
+        translateToRelativeSlug
     }
-}
-
-export function correctPageSlug(slug: string ) : string {
-    return slug.replace("sitemap", "")
 }
