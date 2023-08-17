@@ -1,0 +1,28 @@
+---
+import { storyblokEditable } from "@storyblok/astro";
+import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
+
+const { blok } = Astro.props;
+---
+
+<div
+  {...storyblokEditable(blok)}
+  class="container mx-auto grid md:grid-cols-2 gap-2 my-32 md:my-64"
+>
+  {
+    blok.content?.map((blok, index) => {
+      var shouldSpanRow = index % 2;
+
+      return (
+        <div
+          class="w-full h-full"
+          style={{
+            gridRow: shouldSpanRow ? "span 2 / span 2" : "span 1 / span 1",
+          }}
+        >
+          <StoryblokComponent key={blok._uid} blok={blok} />
+        </div>
+      );
+    })
+  }
+</div>

@@ -25,3 +25,7 @@ export function useStoryblokWrapper() {
         getPage
     }
 }
+
+export function correctPageSlug(slug: string ) : string {
+    return slug.replace("sitemap", "")
+}

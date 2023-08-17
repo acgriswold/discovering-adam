@@ -1,10 +1,12 @@
 "use client"
 
 import * as React from "react"
-// import Link from "next/link"
 
 import { cn } from "@/lib/utils"
+import { correctPageSlug } from "@/lib/storyblok/wrapper"
+
 import { CrumpledPaperIcon } from "@radix-ui/react-icons"
+
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -15,7 +17,7 @@ import {
 } from "@/components/ui/navigation-menu"
 
 
-export type NavigationMenuProperties = {
+export type NavigationWrapperProperties = {
   trigger: string,
   title: string,
   description: string,
@@ -36,7 +38,7 @@ export type NavigationLink = {
 }
 
 
-export function CustomNavigationMenu(props: NavigationMenuProperties) {
+export function NavigationWrapper(props: NavigationwrapperProperties) {
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -66,7 +68,7 @@ export function CustomNavigationMenu(props: NavigationMenuProperties) {
                 <ListItem
                   key={link.Title}
                   title={link.Title}
-                  href={link.href.cached_url}
+                  href={correctPageSlug(link.href.cached_url)}
                 >
                   {link.Description}
                 </ListItem>
@@ -85,7 +87,7 @@ export function CustomNavigationMenu(props: NavigationMenuProperties) {
                   <ListItem
                     key={link.Title}
                     title={link.Title}
-                    href={link.href.cached_url}
+                    href={correctPageSlug(link.href.cached_url)}
                   >
                     {link.Description}
                   </ListItem>

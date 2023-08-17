@@ -1,13 +1,13 @@
 ---
 import { storyblokEditable } from "@storyblok/astro";
 
-import { CustomNavigationMenu } from "@/components/global/navigation";
+import { NavigationWrapper } from "@/components/global/navigationWrapper";
 
 const { blok } = Astro.props;
 ---
 
 
-<CustomNavigationMenu 
+<NavigationWrapper 
     trigger={"Introduction"}
     title={blok.HomeTitle}
     description={blok.HomeDescription}

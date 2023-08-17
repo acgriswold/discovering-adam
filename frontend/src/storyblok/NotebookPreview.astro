@@ -1,0 +1,19 @@
+---
+import { storyblokEditable } from "@storyblok/astro";
+import RichTextRenderer from "@storyblok/astro/RichTextRenderer.astro";
+import { correctPageSlug } from "@/lib/storyblok/wrapper"
+
+const { blok } = Astro.props;
+---
+
+<a class="min-w-full" href={correctPageSlug(blok.href.cached_url)} {...storyblokEditable(blok)}>
+  <div class="p-4 border border-slate-100 rounded shadow-sm">
+    <div class="prose-lg">
+        {blok.Title}
+    </div>
+
+    <div class="prose-sm">
+        <RichTextRenderer richTextData={blok.Notes} />
+    </div>
+  </div>
+</a>
