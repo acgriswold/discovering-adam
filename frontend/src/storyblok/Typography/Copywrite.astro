@@ -1,18 +1,16 @@
 ---
 import { storyblokEditable } from "@storyblok/astro";
 
-import RichTextRenderer from "@storyblok/astro/RichTextRenderer.astro";
+import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
 
 const { blok } = Astro.props;
 ---
 
 <div {...storyblokEditable(blok)} class="prose max-w-none grid justify-center">
-  <div class="max-w-3xl">
-    <div class="prose-xl">
-      <RichTextRenderer richTextData={blok.Lead} />
-    </div>
-
-    <RichTextRenderer richTextData={blok.CallToAction} />
+  <div style={{maxWidth: blok.Width}}>
+    {blok?.content.map((blok) => {
+        return <StoryblokComponent blok={blok} />
+    })}
   </div>
 </div>
 

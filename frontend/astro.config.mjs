@@ -27,7 +27,6 @@ export default defineConfig({
       'sticker': 'storyblok/Sticker',
       'sticker-card-content': 'storyblok/StickerCardContent',
       'hero': 'storyblok/Hero',
-      'introduction': 'storyblok/Introduction',
       'socials-collection': 'storyblok/SocialsCollection',
       'socials-link': 'storyblok/SocialsLink',
       'separator': 'storyblok/Separator',
@@ -36,6 +35,8 @@ export default defineConfig({
       'bento-box-card': 'storyblok/BentoBoxCard',
       'notebook-list': 'storyblok/NotebookList',
       'notebook-preview': 'storyblok/NotebookPreview',
+      'paragraph': 'storyblok/Typography/Paragraph',
+      'copywrite': 'storyblok/Typography/Copywrite',
     },
   }), 
   tailwind({
