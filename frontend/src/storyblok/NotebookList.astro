@@ -1,5 +1,5 @@
 ---
-import { correctPageSlug, useStoryblokWrapper } from "@/lib/storyblok/wrapper";
+import { useStoryblokWrapper } from "@/lib/storyblok/wrapper";
 import { storyblokEditable } from "@storyblok/astro";
 
 const { blok } = Astro.props;
@@ -43,7 +43,7 @@ const {
       ) : (
         stories?.map((story) => {
           return (
-            <a class="min-w-full" href={correctPageSlug(story.full_slug)}>
+            <a class="min-w-full" href={story.full_slug}>
               <div class="p-4 border border-slate-100 rounded shadow-sm">
                 <div class="prose-lg">
                   {story.name}

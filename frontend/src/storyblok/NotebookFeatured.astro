@@ -1,5 +1,5 @@
 ---
-import { correctPageSlug, useStoryblokWrapper } from "@/lib/storyblok/wrapper";
+import { useStoryblokWrapper } from "@/lib/storyblok/wrapper";
 import { storyblokEditable } from "@storyblok/astro";
 import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
 
@@ -37,7 +37,7 @@ const {
           return (
             <a
               class="grid min-w-full max-w-full"
-              href={correctPageSlug(blok.full_slug)}
+              href={blok.full_slug}
             >
               <div class="p-4 border border-slate-100 rounded shadow-sm">
                 <div class="prose-lg mb-2">{blok.name}</div>
