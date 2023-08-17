@@ -7,7 +7,6 @@ import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
 import { correctPageSlug } from "@/lib/storyblok/wrapper";
 
 const { blok } = Astro.props;
-console.log(blok)
 ---
 
 <a href={correctPageSlug(blok.href.cached_url)} class="group">
