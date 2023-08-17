@@ -1,0 +1,59 @@
+---
+import { correctPageSlug, useStoryblokWrapper } from "@/lib/storyblok/wrapper";
+import { storyblokEditable } from "@storyblok/astro";
+import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
+
+const { blok } = Astro.props;
+
+const introduction = {
+  lead: "Featured",
+  content: "",
+};
+
+const { getStories } = useStoryblokWrapper();
+const uuids = blok.notes.join(",");
+const {
+  data: { stories },
+} = await getStories({ by_uuids_ordered: uuids });
+---
+
+<div {...storyblokEditable(blok)}>
+  <div class="container mx-auto flex flex-col gap-4 my-12 place-items-center">
+    <div class="prose mb-8 mt-2">
+      <di class="prose prose-2xl">
+        {introduction.lead}
+      </di>
+
+      <div>{introduction.content}</div>
+    </div>
+
+    {
+      blok.notes.length === 0 ? (
+        <div>
+          Sorry.. I haven't taken the pencil and paper out in a while...
+        </div>
+      ) : (
+        stories?.map((blok) => {
+          return (
+            <a
+              class="grid min-w-full max-w-full"
+              href={correctPageSlug(blok.full_slug)}
+            >
+              <div class="p-4 border border-slate-100 rounded shadow-sm">
+                <div class="prose-lg mb-2">{blok.name}</div>
+
+                <div class="prose-sm border p-4 border-slate-100 rounded">
+                  <div class="max-h-80 overflow-hidden">
+                    <StoryblokComponent blok={blok.content} />
+                  </div>
+
+                  <div>...</div>
+                </div>
+              </div>
+            </a>
+          );
+        })
+      )
+    }
+  </div>
+</div>

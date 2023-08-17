@@ -1,4 +1,4 @@
-import { ISbStoryParams, useStoryblokApi } from "@storyblok/astro";
+import { ISbStoriesParams, ISbStoryParams, useStoryblokApi } from "@storyblok/astro";
 
 export function useStoryblokWrapper() {
     const wrappedApi = useStoryblokApi();
@@ -8,6 +8,10 @@ export function useStoryblokWrapper() {
 
     function get(slug: string, params?: ISbStoryParams) {
         return wrappedApi.get(slug, { version, ...params })
+    }
+
+    function getStories(params?: ISbStoriesParams) {
+        return wrappedApi.getStories({ version, ...params })
     }
 
     function getStory(slug: string, params?: ISbStoryParams) {
@@ -21,6 +25,7 @@ export function useStoryblokWrapper() {
 
     return {
         get,
+        getStories,
         getStory,
         getPage
     }
