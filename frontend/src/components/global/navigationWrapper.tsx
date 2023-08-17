@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/navigation-menu"
 
 
-export type NavigationMenuProperties = {
+export type NavigationWrapperProperties = {
   trigger: string,
   title: string,
   description: string,
@@ -38,7 +38,7 @@ export type NavigationLink = {
 }
 
 
-export function CustomNavigationMenu(props: NavigationMenuProperties) {
+export function NavigationWrapper(props: NavigationwrapperProperties) {
   return (
     <NavigationMenu>
       <NavigationMenuList>
