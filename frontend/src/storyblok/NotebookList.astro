@@ -1,0 +1,35 @@
+---
+import { storyblokEditable } from "@storyblok/astro";
+import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
+
+const { blok } = Astro.props;
+
+const introduction = {
+  lead: "Notebook",
+  content: "",
+};
+---
+
+<div {...storyblokEditable(blok)}>
+  <div class="container mx-auto flex flex-col gap-4 my-12 place-items-center">
+    <div class="prose mb-8 mt-2">
+      <di class="prose prose-2xl">
+        {introduction.lead}
+      </di>
+
+      <div>{introduction.content}</div>
+    </div>
+
+    {
+      blok.notes.length === 0 ? (
+        <div>
+          Sorry.. I haven't taken the pencil and paper out in a while...
+        </div>
+      ) : (
+        blok.notes?.map((blok) => {
+          return <StoryblokComponent blok={blok} />;
+        })
+      )
+    }
+  </div>
+</div>

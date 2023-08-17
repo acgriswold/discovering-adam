@@ -33,7 +33,9 @@ export default defineConfig({
       'separator': 'storyblok/Separator',
       'footer-content': 'storyblok/FooterContent',
       'bento-box': 'storyblok/BentoBox',
-      'bento-box-card': 'storyblok/BentoBoxCard'
+      'bento-box-card': 'storyblok/BentoBoxCard',
+      'notebook-list': 'storyblok/NotebookList',
+      'notebook-preview': 'storyblok/NotebookPreview',
     },
   }), 
   tailwind({

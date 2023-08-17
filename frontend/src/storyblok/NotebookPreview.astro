@@ -1,0 +1,22 @@
+---
+import { storyblokEditable } from "@storyblok/astro";
+import RichTextRenderer from "@storyblok/astro/RichTextRenderer.astro";
+
+const { blok } = Astro.props;
+
+function RemoveSitemap(slug: string) : string {
+    return slug.replace("sitemap/", "")
+}
+---
+
+<a class="min-w-full" href={RemoveSitemap(blok.href.cached_url)} {...storyblokEditable(blok)}>
+  <div class="p-4 border border-slate-100 rounded shadow-sm">
+    <div class="prose-lg">
+        {blok.Title}
+    </div>
+
+    <div class="prose-sm">
+        <RichTextRenderer richTextData={blok.Notes} />
+    </div>
+  </div>
+</a>
