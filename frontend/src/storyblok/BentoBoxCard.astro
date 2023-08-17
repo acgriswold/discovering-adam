@@ -4,12 +4,10 @@ import { CardContent } from "@/components/ui/card";
 import { storyblokEditable } from "@storyblok/astro";
 import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
 
-import { correctPageSlug } from "@/lib/storyblok/wrapper";
-
 const { blok } = Astro.props;
 ---
 
-<a href={correctPageSlug(blok.href.cached_url)} class="group">
+<a href={blok.href.cached_url} class="group">
   <CardWrapper
     client:load
     {...storyblokEditable(blok)}

@@ -15,22 +15,13 @@ export function useStoryblokWrapper() {
     }
 
     function getStory(slug: string, params?: ISbStoryParams) {
-        return get(`cdn/stories/${slug}`, params)
-    }
-
-    function getPage(slug: string, params?: ISbStoryParams) {
         let storyblokSlug = slug ?? 'home'
-        return getStory(`sitemap/${storyblokSlug}`, params)
+        return get(`cdn/stories/${storyblokSlug}`, params)
     }
 
     return {
         get,
         getStories,
-        getStory,
-        getPage
+        getStory
     }
-}
-
-export function correctPageSlug(slug: string ) : string {
-    return slug.replace("sitemap", "")
 }

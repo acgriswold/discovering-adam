@@ -3,7 +3,6 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { correctPageSlug } from "@/lib/storyblok/wrapper"
 
 import { CrumpledPaperIcon } from "@radix-ui/react-icons"
 
@@ -68,7 +67,7 @@ export function NavigationWrapper(props: NavigationwrapperProperties) {
                 <ListItem
                   key={link.Title}
                   title={link.Title}
-                  href={correctPageSlug(link.href.cached_url)}
+                  href={link.href.cached_url}
                 >
                   {link.Description}
                 </ListItem>
@@ -87,7 +86,7 @@ export function NavigationWrapper(props: NavigationwrapperProperties) {
                   <ListItem
                     key={link.Title}
                     title={link.Title}
-                    href={correctPageSlug(link.href.cached_url)}
+                    href={link.href.cached_url}
                   >
                     {link.Description}
                   </ListItem>
