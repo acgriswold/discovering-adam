@@ -3,18 +3,11 @@ import { storyblokEditable } from "@storyblok/astro";
 import { Separator as ShadcnSeparator } from "@/components/ui/separator";
 
 const { blok } = Astro.props;
-
-const padding = {
-  paddingLeft: `${blok.paddingDx}em`,
-  paddingRight: `${blok.paddingDx}em`,
-  paddingTop: `${blok.paddingDy}em`,
-  paddingBottom: `${blok.paddingDy}em`,
-};
 ---
 
-<div style={{ ...padding }}>
+<div style={{ "--padding-small": blok.spacingSmall, "--padding-medium": blok.spacing }} class="py-[var(--padding-small)] md:py-[var(--padding-medium)]">
   {
-    blok.hidden && (
+    !blok.hidden && (
       <ShadcnSeparator
         orientation={blok.orientation}
         {...storyblokEditable(blok)}
