@@ -20,7 +20,7 @@ export function useStoryblokWrapper() {
     }
 
     function translateToRelativeSlug(slug: string) : string {
-        return slug.startsWith('/') ? slug : `/${slug}`
+        return slug.startsWith('/') || slug.startsWith('mailto:') ? slug : `/${slug}`
     }
 
     return {
