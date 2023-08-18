@@ -10,7 +10,7 @@ const { blok } = Astro.props;
 const { translateToRelativeSlug } = useStoryblokWrapper()
 ---
 
-<a href={translateToRelativeSlug(blok.href.cached_url)} class="group">
+<a href={translateToRelativeSlug(blok.href)} class="group">
   <CardWrapper
     client:load
     {...storyblokEditable(blok)}

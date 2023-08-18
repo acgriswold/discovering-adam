@@ -43,7 +43,7 @@ export function NotebookPreview({ href, title, children }: NotebookPreviewProps)
     return (
         <a
             className="grid min-w-full max-w-full"
-            href={translateToRelativeSlug(href.url)}
+            href={translateToRelativeSlug(href)}
         >
             <div className="p-4 border border-slate-100 rounded shadow-sm">
                 <div className="prose-lg mb-2">{title}</div>
