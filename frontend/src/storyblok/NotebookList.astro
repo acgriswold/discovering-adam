@@ -1,4 +1,8 @@
 ---
+import {
+  NotebookPreview,
+  NotebookWrapper,
+} from "@/components/global/notebookWrapper";
 import { useStoryblokWrapper } from "@/lib/storyblok/wrapper";
 import { storyblokEditable } from "@storyblok/astro";
 
@@ -6,10 +10,10 @@ const { blok } = Astro.props;
 
 const introduction = {
   lead: "Notebook",
-  content: "",
+  description: "",
 };
 
-const { getStories, translateToRelativeSlug } = useStoryblokWrapper();
+const { getStories } = useStoryblokWrapper();
 
 const paginationContext = {
   page: 1,
@@ -23,41 +27,29 @@ const {
   excluding_slugs: "notebook/",
   ...paginationContext,
 });
+
+console.log(stories)
 ---
 
-<div {...storyblokEditable(blok)}>
-  <div class="container mx-auto flex flex-col gap-4 my-12 place-items-center">
-    <div class="prose mb-8 mt-2">
-      <di class="prose prose-2xl">
-        {introduction.lead}
-      </di>
-
-      <div>{introduction.content}</div>
-    </div>
-
-    {
-      stories.length === 0 ? (
-        <div>
-          Sorry.. I haven't taken the pencil and paper out in a while...
-        </div>
-      ) : (
-        stories?.map((story) => {
-          console.log(story)
-          return (
-            <a class="min-w-full" href={translateToRelativeSlug(story.full_slug)}>
-              <div class="p-4 border border-slate-100 rounded shadow-sm">
-                <div class="prose-lg">
-                  {story.name}
-                </div>
-                <div class="prose-sm">
-                  <div>{story.published_at}</div>
-                  <i>(Under construction)</i>
-                </div>
-              </div>
-            </a>
-          );
-        })
-      )
-    }
-  </div>
-</div>
+<NotebookWrapper
+  {...storyblokEditable(blok)}
+  lead={introduction.lead}
+  description={introduction.description}
+>
+  {
+    stories.length === 0 ? (
+      <div>Sorry.. I haven't taken the pencil and paper out in a while...</div>
+    ) : (
+      stories?.map((story) => {
+        return (
+          <NotebookPreview href={{url: story.full_slug, cached_url: ""}} title={story.name}>
+            <div class="prose-sm">
+              <div>{story.published_at}</div>
+              <i>(Under construction)</i>
+            </div>
+          </NotebookPreview>
+        );
+      })
+    )
+  }
+</NotebookWrapper>
