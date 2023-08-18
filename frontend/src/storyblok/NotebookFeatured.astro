@@ -32,7 +32,7 @@ const {
     ) : (
       stories?.map((story) => {
         return (
-          <NotebookPreview href={{url: story.full_slug, cached_url: ""}} title={story.name}>
+          <NotebookPreview href={{url: "", cached_url: story.slug}} title={story.name}>
             <div class="prose-sm border p-4 border-slate-100 rounded">
               <div class="max-h-80 overflow-hidden">
                 <StoryblokComponent blok={story.content} />

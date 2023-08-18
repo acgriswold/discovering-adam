@@ -38,7 +38,7 @@ export type NavigationLink = {
 }
 
 
-export function NavigationWrapper(props: NavigationwrapperProperties) {
+export function NavigationWrapper(props: NavigationWrapperProperties) {
   const { translateToRelativeSlug } = useStoryblokWrapper()
 
   return (
@@ -70,7 +70,7 @@ export function NavigationWrapper(props: NavigationwrapperProperties) {
                 <ListItem
                   key={link.Title}
                   title={link.Title}
-                  href={translateToRelativeSlug(link.href.cached_url)}
+                  href={translateToRelativeSlug(link.href, '/')}
                 >
                   {link.Description}
                 </ListItem>
@@ -79,17 +79,17 @@ export function NavigationWrapper(props: NavigationwrapperProperties) {
           </NavigationMenuContent>
         </NavigationMenuItem>
 
-        
+
         {props.secondaryItems.map((item) => (
           <NavigationMenuItem>
             <NavigationMenuTrigger>{item.Trigger}</NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                 {item.Content.map((link) => (
                   <ListItem
                     key={link.Title}
                     title={link.Title}
-                    href={translateToRelativeSlug(link.href.cached_url)}
+                    href={translateToRelativeSlug(link.href, '/')}
                   >
                     {link.Description}
                   </ListItem>
