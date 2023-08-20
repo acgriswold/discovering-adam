@@ -40,7 +40,7 @@ const {
     ) : (
       stories?.map((story) => {
         return (
-          <NotebookPreview href={{url: story.full_slug, cached_url: ""}} title={story.name}>
+          <NotebookPreview href={{url: "", cached_url: story.slug}} title={story.name}>
             <div class="prose-sm">
               <div>{story.published_at}</div>
               <i>(Under construction)</i>
