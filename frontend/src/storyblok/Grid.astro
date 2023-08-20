@@ -7,7 +7,7 @@ const { blok } = Astro.props
 
 <div {...storyblokEditable(blok)}>
   <div
-    class='container mx-auto grid md:grid-cols-3 gap-12 my-12 place-items-center'
+    class='container mx-auto grid md:grid-cols-3 gap-2 md:gap-4 place-items-center content-stretch'
   >
     {
       blok.columns?.map((blok) => {

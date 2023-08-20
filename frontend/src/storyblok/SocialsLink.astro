@@ -3,18 +3,28 @@ import { storyblokEditable } from "@storyblok/astro";
 
 import { TooltipWrapper } from "@/components/global/tooltipWrapper";
 import { useStoryblokWrapper } from "@/lib/storyblok/wrapper";
+import CardWrapper from "@/components/global/cardWrapper";
+import { CardContent } from "@/components/ui/card";
 
-const { translateToRelativeSlug } = useStoryblokWrapper()
+const { translateToRelativeSlug } = useStoryblokWrapper();
 const { blok } = Astro.props;
 const {
   asset: { alt, title, filename },
+  title: blokTitle
 } = blok;
 ---
 
-<TooltipWrapper client:load {...storyblokEditable(blok)}>
-  <a slot="trigger" href={translateToRelativeSlug(blok.href)}>
-    <img src={filename} alt={alt} />
-  </a>
+<a href={translateToRelativeSlug(blok.href)} class="h-full w-full">
+  <CardWrapper>
+    <TooltipWrapper client:load {...storyblokEditable(blok)}>
+      <CardContent slot="trigger" className="px-8 py-6">
+        <div class="grid grid-cols-2 gap-2">
+          <img src={filename} alt={alt} />
+          <div class="prose-2xl align-middle justify-center">{blokTitle}</div>
+        </div>
+      </CardContent>
 
-  <div>{title}</div>
-</TooltipWrapper>
+      <div>{title}</div>
+    </TooltipWrapper>
+  </CardWrapper>
+</a>
