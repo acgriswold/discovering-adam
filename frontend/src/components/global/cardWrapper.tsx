@@ -13,17 +13,21 @@ export type CardWrapperProps = PropsWithChildren<CardWrapperPropsInternal & Reac
 
 export default function CardWrapper({ title, description, children, footer, className, style }: CardWrapperProps) {
     return (
-        <Card className={cn(className)} style={{...style}}>
-            <CardHeader>
-                <CardTitle>{title}</CardTitle>
-                <CardDescription>{description}</CardDescription>
-            </CardHeader>
-            
+        <Card className={cn(className)} style={{ ...style }}>
+            {title && description &&
+                <CardHeader>
+                    <CardTitle>{title}</CardTitle>
+                    <CardDescription>{description}</CardDescription>
+                </CardHeader>
+            }
+
             {children}
-            
-            <CardFooter>
-                {footer}
-            </CardFooter>
+
+            {footer &&
+                <CardFooter>
+                    {footer}
+                </CardFooter>
+            }
         </Card>
     )
 } 
