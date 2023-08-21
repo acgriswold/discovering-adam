@@ -20,7 +20,7 @@ const { translateToRelativeSlug } = useStoryblokWrapper()
 
     <slot slot="description">{blok.description}</slot>
 
-    <CardContent className="flex-grow">
+    <CardContent className="flex-grow overflow-hidden">
       {
         blok.content?.map((blok) => {
           return <StoryblokComponent key={blok._uid} blok={blok} />;
