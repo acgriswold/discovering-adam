@@ -18,9 +18,9 @@ const {
   <CardWrapper>
     <TooltipWrapper client:load {...storyblokEditable(blok)}>
       <CardContent slot="trigger" className="px-8 py-6">
-        <div class="grid grid-cols-2 gap-2">
-          <img src={filename} alt={alt} />
-          <div class="prose-2xl align-middle justify-center">{blokTitle}</div>
+        <div class="flex flex-row gap-4 items-center">
+          <img src={filename} alt={alt} width="32" />
+          <div class="prose-lg">{blokTitle}</div>
         </div>
       </CardContent>
 

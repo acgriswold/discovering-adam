@@ -7,7 +7,8 @@ const { blok } = Astro.props
 
 <div {...storyblokEditable(blok)}>
   <div
-    class='container mx-auto grid md:grid-cols-3 gap-2 md:gap-4 place-items-center content-stretch'
+  style={{ "--cols-count": `repeat(${blok.columnCount ?? 3}, minmax(0, 1fr))` }}
+    class='container mx-auto grid md:grid-cols-[--cols-count] gap-2 md:gap-4 place-items-center content-stretch'
   >
     {
       blok.columns?.map((blok) => {
