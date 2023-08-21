@@ -5,4 +5,10 @@ import { storyblokEditable } from "@storyblok/astro";
 const { blok } = Astro.props;
 ---
 
-<Wordmark {...storyblokEditable(blok)} />
+<div class="relative overflow-visible">
+    <Wordmark className="absolute blur-[10px]" pathClassName="fill-slate-300" />
+    <Wordmark className="absolute blur-[50px]" pathClassName="fill-slate-100" />
+    <div class="absolute bg-slate-200 blur-[175px] rounded-full w-[33%] aspect-square" />
+    <div class="absolute right-0 bottom-0 translate-x-[25%] translate-y-[15%] bg-slate-400 blur-[200px] rounded-full w-[20%] aspect-square" />
+    <Wordmark className="relative" {...storyblokEditable(blok)} />
+</div>
