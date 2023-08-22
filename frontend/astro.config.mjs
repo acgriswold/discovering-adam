@@ -40,6 +40,7 @@ export default defineConfig({
       'notebook-featured': 'storyblok/NotebookFeatured',
       'paragraph': 'storyblok/Typography/Paragraph',
       'copywrite': 'storyblok/Typography/Copywrite',
+      'under-construction': 'storyblok/UnderConstruction',
     },
   }), 
   tailwind({

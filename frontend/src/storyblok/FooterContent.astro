@@ -1,7 +1,6 @@
 ---
 import { storyblokEditable } from "@storyblok/astro";
 import RichTextRenderer from "@storyblok/astro/RichTextRenderer.astro";
-import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
 
 const { blok } = Astro.props;
 ---
@@ -11,15 +10,11 @@ const { blok } = Astro.props;
     <RichTextRenderer richTextData={blok.left} />
   </section>
 
-  <section class="flex flex-col">
+  <section class="flex flex-col gap-0 prose-p:my-1">
     <RichTextRenderer richTextData={blok.center} />
   </section>
 
-  <section class="flex flex-wrap not-prose mt-8 justify-center">
-    {
-      blok.socials?.map((blok) => {
-        return <StoryblokComponent blok={blok} />;
-      })
-    }
+  <section class="justify-self-end mt-auto mb-8">
+    {blok.copyright}
   </section>
 </div>
