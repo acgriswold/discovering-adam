@@ -9,8 +9,9 @@ const { blok } = Astro.props;
   style={{
     "--padding-x-small": blok.paddingDxSmall,
     "--padding-x-medium": blok.paddingDxMedium,
+    '--page-width': blok.enforceWidth ? "1400px" : "none"
   }}
-  class="container max-w-none px-[--padding-x-small] md:px-[--padding-x-medium] mx-auto"
+  class="container max-w-[--page-width] px-[--padding-x-small] md:px-[--padding-x-medium] mx-auto"
   {...storyblokEditable(blok)}
 >
   {
