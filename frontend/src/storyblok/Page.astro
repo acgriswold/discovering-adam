@@ -5,7 +5,7 @@ import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
 const { blok } = Astro.props
 ---
 
-<section {...storyblokEditable(blok)}>
+<section class="container px-4 md:px-8 mx-auto" {...storyblokEditable(blok)}>
   {
     blok.body?.map((blok) => {
       return <StoryblokComponent blok={blok} />
