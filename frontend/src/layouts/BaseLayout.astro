@@ -21,7 +21,7 @@ let [{ data: header }, { data: footer }] = await Promise.all([
   </head>
 
   <body class="min-h-[100vh] flex flex-col overflow-x-hidden">
-    <nav class="pt-4">
+    <nav class="absolute top-4 left-1/2 -translate-x-1/2 z-50">
       {header && <StoryblokComponent blok={header.story.content} />}
     </nav>
 
