@@ -6,9 +6,12 @@ const { blok } = Astro.props;
 ---
 
 <figure>
-  <section class="bloom conic-slate blur-[50px] -left-32 top-4"></section>
-  <section class="bloom conic-indigo blur-[120px] -right-6 -bottom-4"></section>
-  <Wordmark {...storyblokEditable(blok)} />
+  <div class="filter">
+    <div class="bottom" />
+    <div class="noise" />
+  </div>
+
+  <Wordmark className="relative px-8 py-24 md:px-16 md:py-64" pathClassName="fill-gray-50" {...storyblokEditable(blok)} />
 </figure>
 
 <style>
@@ -16,48 +19,24 @@ const { blok } = Astro.props;
     @apply flex relative flex-col;
   }
 
-  figure svg,
-  .bloom {
-    @apply aspect-square h-64 md:h-[55%];
+  .filter {
+    background: radial-gradient(80% 32% at 50% 70%,hsla(0, 0%, 100%, 0.144) 0,hsla(0, 0%, 100%, 0.027) 47%), 
+                radial-gradient(97% 27% at 50% 80%,hsla(0, 0%, 100%, 0.384) 0,hsla(0,0%,100%,0) 47%), 
+                linear-gradient(180deg,#141414 5%,#0b0b0b);
+                
+    @apply absolute bottom-0 w-full h-full z-0;
   }
 
-  .conic-slate {
-    @apply bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-slate-100 via-slate-300 to-indigo-600;
+  .filter .bottom {
+    background-image: url("/bottom.webp");
+    
+    @apply absolute bottom-0 w-full h-[160px] bg-repeat-x;
   }
 
-  .conic-indigo {
-    @apply bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-indigo-50 via-indigo-100 to-slate-400;
+  .noise {
+    background-image: url("/noise.png");
+
+    @apply absolute bottom-0 top-0 left-0 right-0 w-full h-full opacity-[50%] bg-repeat
   }
 
-  .bloom {
-    @apply absolute z-[-1] rounded-full transition-all;
-    animation: pulse 5s cubic-bezier(0, 0, 0, 0.5) infinite,
-      glow 5s linear infinite;
-  }
-
-  @keyframes glow {
-    0% {
-      @apply bg-slate-50/50;
-    }
-    33% {
-      @apply bg-stone-300/50;
-    }
-    66% {
-      @apply bg-neutral-500/50;
-    }
-    100% {
-      @apply bg-slate-50/50;
-    }
-  }
-  @keyframes pulse {
-    0%,
-    100% {
-      opacity: 1;
-      transform: scale(0.7);
-    }
-    50% {
-      opacity: 0.5;
-      transform: scale(1.3);
-    }
-  }
 </style>

@@ -20,12 +20,12 @@ let [{ data: header }, { data: footer }] = await Promise.all([
     <title>Adam Griswold | Fullstack Designer & Developer</title>
   </head>
 
-  <body class="container px-4 md:px-8 min-h-[100vh] flex flex-col overflow-x-hidden">
-    <nav class="pt-4">
+  <body class="min-h-[100vh] flex flex-col overflow-x-hidden">
+    <nav class="absolute top-4 left-1/2 -translate-x-1/2 z-50">
       {header && <StoryblokComponent blok={header.story.content} />}
     </nav>
 
-    <main class="mx-auto">
+    <main>
       <slot />
     </main>
 
