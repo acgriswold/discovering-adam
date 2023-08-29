@@ -1,0 +1,38 @@
+---
+import { storyblokEditable } from "@storyblok/astro";
+import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
+
+const { blok } = Astro.props;
+---
+
+<section
+  style={{
+    "--padding-x-small": blok.paddingDxSmall,
+    "--padding-x-medium": blok.paddingDxMedium,
+    '--page-width': blok.enforceWidth ? "1400px" : "none"
+  }}
+  class="container prose max-w-[--page-width] px-[--padding-x-small] md:px-[--padding-x-medium] pt-32 mx-auto"
+  {...storyblokEditable(blok)}
+>
+  <h1>{blok.title}</h1>
+  <div class="flex flex-row flex-grow justify-between">
+    <div class="prose-lg italic text-muted-foreground">{blok.subtitle}</div>
+    <div class="prose-lg text-muted-foreground">@{blok.author}</div>
+  </div>
+
+  <div class="flex flex-row">
+    {blok.tags.map((tag) => {
+        return (
+            <div class="p-8 border border-secondary rounded-full font-thin">{tag}</div>
+        )
+    })}
+  </div>
+
+  <img src={blok.hero.filename} alt={blok.hero.alt}  />
+
+  {
+    blok.body?.map((blok) => {
+      return <StoryblokComponent blok={blok} />;
+    })
+  }
+</section>
