@@ -32,12 +32,14 @@ export function NotebookWrapper({ lead, description, children }: NotebookProps) 
 
 type NotebookPreviewPropsInternal = {
     href?: Href,
-    title?: string
+    title?: string,
+    subtitle?: string,
+    tags?: string[]
 }
 
 export type NotebookPreviewProps = PropsWithChildren<NotebookPreviewPropsInternal>
 
-export function NotebookPreview({ href, title, children }: NotebookPreviewProps) {
+export function NotebookPreview({ href, title, subtitle, tags, children }: NotebookPreviewProps) {
     const { translateToRelativeSlug } = useStoryblokWrapper()
 
     return (
@@ -46,9 +48,18 @@ export function NotebookPreview({ href, title, children }: NotebookPreviewProps)
             href={translateToRelativeSlug(href)}
         >
             <div className="p-4 border border-slate-100 rounded shadow-sm">
-                <div className="prose-lg mb-2">{title}</div>
+                <div className="prose-2xl">{title}</div>
+                <div className="prose-md text-secondary-foreground italic mb-2">{subtitle}</div>
 
                 {children}
+
+                <div className="prose-sm flex flex-row">
+                    {tags?.map((tag) => {
+                        return (
+                            <div className="border m-2 py-0 px-4 rounded-full">{tag}</div>
+                        )
+                    })}
+                </div>
             </div>
         </a>
     )

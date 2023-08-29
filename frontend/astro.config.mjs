@@ -38,6 +38,7 @@ export default defineConfig({
       'bento-box-card': 'storyblok/BentoBoxCard',
       'notebook-list': 'storyblok/NotebookList',
       'notebook-featured': 'storyblok/NotebookFeatured',
+      'notebook-page': 'storyblok/NotebookPage',
       'paragraph': 'storyblok/Typography/Paragraph',
       'copywrite': 'storyblok/Typography/Copywrite',
       'under-construction': 'storyblok/UnderConstruction',
