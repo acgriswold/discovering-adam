@@ -4,6 +4,7 @@ import {
   NotebookWrapper,
 } from "@/components/global/notebookWrapper";
 import { useStoryblokWrapper } from "@/lib/storyblok/wrapper";
+import { HeartFilledIcon, HeartIcon } from "@radix-ui/react-icons";
 import { storyblokEditable } from "@storyblok/astro";
 import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
 
@@ -19,6 +20,8 @@ const uuids = blok.notes.join(",");
 const {
   data: { stories },
 } = await getStories({ by_uuids_ordered: uuids });
+
+const { translateToRelativeSlug } = useStoryblokWrapper();
 ---
 
 <NotebookWrapper
@@ -31,16 +34,48 @@ const {
       <div>Sorry.. I haven't taken the pencil and paper out in a while...</div>
     ) : (
       stories?.map((story) => {
+        console.log(story);
         return (
-          <NotebookPreview href={{url: "", cached_url: story.slug}} title={story.name}>
-            <div class="prose-sm border p-4 border-slate-100 rounded">
-              <div class="max-h-80 overflow-hidden">
-                <StoryblokComponent blok={story.content} />
-              </div>
+          <>
+            <a
+              class="grid min-w-full max-w-full"
+              href={translateToRelativeSlug({
+                url: "",
+                cached_url: story.slug,
+              })}
+            >
+              <div class="border border-slate-100 rounded shadow-sm flex flex-row">
+                {story.content.hero.filename && (
+                  <div class="overflow-clip w-[33%] aspect-auto">
+                    <img
+                      class="object-cover"
+                      src={story.content.hero.filename}
+                      alt={story.content.hero.alt}
+                    />
+                  </div>
+                )}
 
-              <div>...</div>
-            </div>
-          </NotebookPreview>
+                <div class="relative px-8 py-4 flex-grow">
+                  <HeartIcon className="absolute top-4 right-8 fill-secondary-foreground" />
+
+                  <div class="prose-2xl">{story.content.title}</div>
+                  <div class="prose-md text-secondary-foreground italic mb-2">
+                    {story.content.subtitle}
+                  </div>
+
+                  <div class="prose-sm flex flex-row">
+                    {story.content.tags?.map((tag) => {
+                      return (
+                        <div class="border m-2 py-0 px-4 rounded-full">
+                          {tag}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </a>
+          </>
         );
       })
     )
