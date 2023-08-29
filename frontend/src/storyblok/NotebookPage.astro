@@ -15,10 +15,7 @@ const { blok } = Astro.props;
   {...storyblokEditable(blok)}
 >
   <h1>{blok.title}</h1>
-  <div class="flex flex-row flex-grow justify-between">
-    <div class="prose-lg italic text-muted-foreground">{blok.subtitle}</div>
-    <div class="prose-lg text-muted-foreground">@{blok.author}</div>
-  </div>
+  <div class="prose-lg italic text-muted-foreground">{blok.subtitle}</div>
 
   <div class="flex flex-row">
     {blok.tags.map((tag) => {
@@ -29,6 +26,7 @@ const { blok } = Astro.props;
   </div>
 
   <img src={blok.hero.filename} alt={blok.hero.alt}  />
+  <div class="prose-lg text-muted-foreground">Written by @{blok.author}</div>
 
   {
     blok.body?.map((blok) => {
