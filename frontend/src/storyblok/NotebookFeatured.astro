@@ -44,11 +44,11 @@ const { translateToRelativeSlug } = useStoryblokWrapper();
                 cached_url: story.slug,
               })}
             >
-              <div class="border border-slate-100 rounded shadow-sm flex flex-row">
+              <div class="border border-slate-100 rounded shadow-sm flex flex-col md:flex-row">
                 {story.content.hero.filename && (
-                  <div class="overflow-clip w-[33%] aspect-auto">
+                  <div class="overflow-clip md:w-[33%] aspect-auto">
                     <img
-                      class="object-cover"
+                      class="object-cover h-full"
                       src={story.content.hero.filename}
                       alt={story.content.hero.alt}
                     />
